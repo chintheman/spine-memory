@@ -19,7 +19,6 @@ from typing import Any, Dict, List, Optional, Tuple
 logger = logging.getLogger(__name__)
 
 EMBEDDING_DIM = 384  # MiniLM-L6-v2
-MAX_BYTES_PER_VEC = EMBEDDING_DIM * 4  # 4 bytes per float32
 
 
 def _vector_to_blob(vector: List[float]) -> bytes:
