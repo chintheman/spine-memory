@@ -1,0 +1,12 @@
+[
+  {
+    "query": "user communication preferences",
+    "expected_hits": ["concise", "Telegram"],
+    "k": 6
+  },
+  {
+    "query": "system architecture decisions",
+    "expected_hits": ["local-first", "git-tracked"],
+    "k": 6
+  }
+]

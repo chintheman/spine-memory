@@ -1,0 +1,298 @@
+{
+  "_about": "Spine retrieval gate, three sections, scored separately because averaging them hides which capability moved. SINGLE-HOP: any expect_any phrase appears in top-k. CONJUNCTIVE: every expect_all phrase appears, a compound question must surface all its parts, wherever they live. MULTI-HOP: every phrase appears AND they come from at least min_sources documents each contributing a phrase the others do not. A case only belongs in MULTI-HOP if no single document in the corpus answers it; `eval_run.py --validate` enforces that, because 11 of 12 cases were silently mislabelled once. Needles must be specific enough to fail on an unrelated query: short unanchored substrings like 'rce' match 'source'.",
+  "_about_k": "Raised 20 -> 25 on 2026-09-14 to follow DEFAULT_K in index.py. The gate must read the store at the same depth the live recall path does, or it grades a system nobody runs. At 2,330 observations the golden doc for mh-memory-sync-latency sat at rank 21 while its content was intact, so k=20 flagged a real window miss; k=25 passes all 29.",
+  "k": 25,
+  "cases": [
+    {
+      "id": "sg-lwix-weighting",
+      "q": "how is the SG-LWIX watch index weighted",
+      "expect_any": [
+        "LWIX",
+        "watch index",
+        "price card",
+        "listings.json"
+      ],
+      "note": "Known-failing at baseline: returns 'GTM Second Brain' and 'ETH price'.",
+      "hop": "single"
+    },
+    {
+      "id": "zo-route-rce",
+      "q": "why was the Zo api/zo public route rewritten",
+      "expect_any": [
+        "RCE",
+        "unauthenticated",
+        "root",
+        "shell",
+        "traversal"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "embedder-break",
+      "q": "what silently broke spine semantic search for eight days",
+      "expect_any": [
+        "get_sentence_embedding_dimension",
+        "embedder",
+        "rename",
+        "MiniLM"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "canonical-hermes",
+      "q": "which Hermes installation is canonical, the M1 or the one on Zo",
+      "expect_any": [
+        "M1",
+        "canonical",
+        "0.20.0",
+        "deleted"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "system-topic",
+      "q": "which Telegram topic is the ops and system broadcast channel",
+      "expect_any": [
+        "topic 11",
+        "#11",
+        "system",
+        "ops group"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "control-direction",
+      "q": "can Zo call into Claude Code or is control one way",
+      "expect_any": [
+        "one-way",
+        "one way",
+        "never the reverse",
+        "Claude Code calls"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "totoapp-rejection",
+      "q": "why did TotoApp get rejected from the App Store",
+      "expect_any": [
+        "age rating",
+        "2.3.6",
+        "rejected"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "workout-log-shape",
+      "q": "how are records structured in workout-log.json",
+      "expect_any": [
+        "per exercise",
+        "group by date",
+        "one record"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "groq-limit",
+      "q": "why was Groq removed from the fallback providers",
+      "expect_any": [
+        "8K TPM",
+        "8K",
+        "413",
+        "Groq"
+      ],
+      "note": "Lives only in MEMORY.md at baseline, expected to fail until orphan recovery.",
+      "hop": "single"
+    },
+    {
+      "id": "concierge-field-name",
+      "q": "what is the concierge bot field called instead of Trigger",
+      "expect_any": [
+        "Driver",
+        "too aggressive"
+      ],
+      "note": "Lives only in MEMORY.md at baseline, expected to fail until orphan recovery.",
+      "hop": "single"
+    },
+    {
+      "id": "no-dashes",
+      "q": "what punctuation is banned in copy the user ships",
+      "expect_any": [
+        "em/en",
+        "em dash",
+        "hyphen"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "gh-argv-limit",
+      "q": "why did passing a large base64 payload to gh silently fail",
+      "expect_any": [
+        "128KB",
+        "128 KB",
+        "argv",
+        "96KB"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "telegram-100-prefix",
+      "q": "hermes send fails with a MEDIA tag error, what is actually wrong",
+      "expect_any": [
+        "-100",
+        "prefix",
+        "chat id"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "zo-service-restart",
+      "q": "how do I restart a Zo web service",
+      "expect_any": [
+        "supervisorctl"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "deploy-source",
+      "q": "which checkout does the personal site deploy from",
+      "expect_any": [
+        "worktree",
+        "origin/main"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "npm-audit-hazard",
+      "q": "is it safe to run npm audit fix in the hermes agent repo",
+      "expect_any": [
+        "cascade",
+        "bad dependency",
+        "every wo",
+        "--force"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "session-id-shapes",
+      "q": "which Claude Code session id can actually be resumed locally",
+      "expect_any": [
+        "UUID",
+        "uuid"
+      ],
+      "hop": "single"
+    },
+    {
+      "id": "mh-zo-safe-publish",
+      "q": "what is the safe way for an agent to publish something to Zo",
+      "expect_all": [
+        "mcp first",
+        "unauthenticated"
+      ],
+      "hop": "conj"
+    },
+    {
+      "id": "mh-rebuild-unsafe",
+      "q": "why is it unsafe to rebuild the spine index right now",
+      "expect_all": [
+        "status",
+        "jsonl",
+        "promote"
+      ],
+      "hop": "conj"
+    },
+    {
+      "id": "mh-blocked-cli",
+      "q": "a shell command is blocked for Claude Code, what should I try before asking the owner",
+      "expect_all": [
+        "hermes chat",
+        "classifier"
+      ],
+      "hop": "conj"
+    },
+    {
+      "id": "mh-secrets-route",
+      "q": "how do I read a secret when the permission classifier blocks me",
+      "expect_all": [
+        "keychain",
+        "classifier"
+      ],
+      "hop": "conj"
+    },
+    {
+      "id": "mh-silent-failure",
+      "q": "what keeps breaking silently in this system and what was meant to catch it",
+      "expect_all": [
+        "embedder",
+        "heartbeat"
+      ],
+      "hop": "conj"
+    },
+    {
+      "id": "mh-who-drives-who",
+      "q": "can Hermes start a Claude Code session, and can Zo",
+      "expect_all": [
+        "hermes",
+        "zo",
+        "initiate"
+      ],
+      "hop": "conj"
+    },
+    {
+      "id": "mh-output-rules",
+      "q": "how should I format a reply and what punctuation is off limits",
+      "expect_all": [
+        "dash",
+        "few lines"
+      ],
+      "min_sources": 2,
+      "hop": "multi"
+    },
+    {
+      "id": "mh-memory-md-care",
+      "q": "why does Hermes MEMORY.md need manual repair and what writes to it",
+      "expect_all": [
+        "two",
+        "consolidation",
+        "promote"
+      ],
+      "hop": "conj"
+    },
+    {
+      "id": "mh-cron-traps",
+      "q": "what goes wrong when creating a Hermes cron and how do I verify it worked",
+      "expect_all": [
+        "30m",
+        "one-shot"
+      ],
+      "hop": "conj"
+    },
+    {
+      "id": "mh-memory-sync-latency",
+      "q": "if I write a Claude Code memory file now, when can Hermes search it",
+      "expect_all": [
+        "sync",
+        "4 hours"
+      ],
+      "note": "Added 2026-08-20. Expected to FAIL until the sync cron has run once after the memory file was written -- it measures the freshness gap on purpose.",
+      "hop": "conj"
+    },
+    {
+      "id": "mh-verification-discipline",
+      "q": "before I report that something works, what must I do first",
+      "expect_all": [
+        "negative control",
+        "verify"
+      ],
+      "hop": "conj"
+    },
+    {
+      "id": "mh-deploy-truth",
+      "q": "how do I confirm a site change is actually live and not just committed",
+      "expect_all": [
+        "served",
+        "worktree"
+      ],
+      "hop": "conj"
+    }
+  ]
+}
