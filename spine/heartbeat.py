@@ -212,7 +212,6 @@ def check_sync(cfg):
     sync.MEM_DIR = CLAUDE_MEM_DIR
     recs, unparseable = sync.build_records("1970-01-01T00:00:00+00:00")
     expected = sync.expected_row_count(prior, recs, unparseable)
-    n_files = len(recs)
 
     age_h = (time.time() - os.path.getmtime(jsonl)) / 3600
     con = connect_db(cfg.db)

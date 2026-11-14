@@ -92,7 +92,6 @@ def main() -> None:
         has_obs_excl = any(t["tiers"] == "obs" for t in term_rows)
         has_wiki_excl = any(t["tiers"] == "wiki" for t in term_rows)
         has_both = any(t["tiers"] == "both" for t in term_rows)
-        has_neither = any(t["tiers"] == "neither" for t in term_rows)
         if has_obs_excl and has_wiki_excl:
             derived = "mixed"
         elif has_obs_excl:
