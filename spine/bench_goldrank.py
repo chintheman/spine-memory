@@ -63,14 +63,6 @@ def _wiki_iter(conn: sqlite3.Connection):
     return conn.execute("SELECT title, content FROM wiki_chunks")
 
 
-def _obs_iter(conn: sqlite3.Connection):
-    return conn.execute(
-        "SELECT content FROM observations WHERE status IN (%s)"
-        % ",".join("?" * len(SEARCHABLE_STATUSES)),
-        SEARCHABLE_STATUSES,
-    )
-
-
 def _fts_safe_query(text: str) -> str:
     """Use the REAL query builder from index.py — never a local reconstruction."""
     from spine.index import _fts5_safe_query
@@ -89,7 +81,6 @@ def probe_query(query: str, terms: List[str], conn: sqlite3.Connection,
 
     # ── wiki-FTS channel ──
     wiki_rank = None
-    wiki_visible = None  # rank after the k*3 fetch + interleave (approx)
     if fts_q:
         try:
             rows = conn.execute(

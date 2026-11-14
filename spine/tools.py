@@ -579,7 +579,6 @@ def handle_explain(args: Dict[str, Any], config: SpineConfig) -> str:
 
     for rec in all_records:
         rid = rec.get("id", "")
-        patch_target = rec.get("patch", {})
 
         # Direct match (the original record or a tombstone/patch targeting this ID)
         if rid == obs_id:
